@@ -32,8 +32,16 @@ if ! code_clone; then
         cd django-notes-app
 fi
 
-install_requirements
+if ! install_requirements; then
+        echo "Installation Failed"
+        exit 1
+
 required_restarts
-deploy
+if ! deploy; then
+        echo "deployment failed, mailing the admin"
+        #sendmail
+        exit 1
+fi
+
 
 echo "******* Deployment Done *******"
