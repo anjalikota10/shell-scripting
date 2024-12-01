@@ -35,8 +35,10 @@ fi
 if ! install_requirements; then
         echo "Installation Failed"
         exit 1
+fi
 
 required_restarts
+
 if ! deploy; then
         echo "deployment failed, mailing the admin"
         #sendmail
